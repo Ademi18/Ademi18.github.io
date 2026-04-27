@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fadekemi Adefolalu — Data Analyst Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1612;
+    --paper: #f5f0e8;
+    --cream: #ede7d9;
+    --warm-mid: #c4a882;
+    --accent: #8b4513;
+    --accent-light: #d4956a;
+    --muted: #7a6f63;
+    --border: rgba(26,22,18,0.12);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.15rem; letter-spacing: 0.01em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.85rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  header {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 6rem 3rem 4rem;
+    border-bottom: 0.5px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; left: -2rem;
+    transform: translateY(-50%);
+    font-family: var(--serif);
+    font-size: clamp(7rem, 18vw, 18rem);
+    color: rgba(26,22,18,0.04);
+    white-space: nowrap;
+    user-select: none;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 1.05;
+    max-width: 800px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.35s forwards;
+  }
+
+  .hero-title em { font-style: italic; color: var(--accent-light); }
+
+  .hero-bottom {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-top: 3.5rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.55s forwards;
+  }
+
+  .hero-bio {
+    max-width: 440px;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    border-left: 2px solid var(--warm-mid);
+    padding-left: 1.25rem;
+  }
+
+  .hero-skills {
+    display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: flex-end;
+  }
+
+  .skill-tag {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.45rem 1rem;
+    border: 0.5px solid var(--border);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--muted);
+  }
+
+  /* SECTION STRUCTURE */
+  section { padding: 5rem 3rem; border-bottom: 0.5px solid var(--border); }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-num {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--warm-mid);
+    font-style: italic;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+ .about-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .about-img {
+      width: 400px;
+      height: auto;
+    }
+
+  .about-main p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1.05rem; }
+  .about-main strong { color: var(--ink); font-weight: 500; }
+
+  .about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .sidebar-block {
+    padding: 1.25rem 1.5rem;
+    background: var(--cream);
+    border-left: 2px solid var(--warm-mid);
+  }
+
+  .sidebar-block h4 {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .sidebar-block ul { list-style: none; }
+  .sidebar-block ul li {
+    font-size: 0.92rem;
+    color: var(--muted);
+    padding: 0.25rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .sidebar-block ul li:last-child { border-bottom: none; }
+  .sidebar-block ul li::before { content: '— '; color: var(--warm-mid); }
+
+  /* PROJECTS */
+  .project-block {
+    margin-bottom: 5rem;
+  }
+  .project-block:last-child { margin-bottom: 0; }
+
+  .project-number {
+    font-family: var(--serif);
+    font-size: 5rem;
+    line-height: 1;
+    color: rgba(26,22,18,0.06);
+    margin-bottom: -1.5rem;
+    font-style: italic;
+  }
+
+  .project-header {
+    display: flex; align-items: baseline; gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-tool-badge {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1px;
+    color: #fff;
+  }
+
+  .badge-excel { background: #217346; }
+  .badge-pbi { background: #F2C811; color: #1a1612; }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+  }
+
+  /* DASHBOARD IMAGE — MAIN FOCUS */
+  .dashboard-frame {
+    margin: 1.5rem 0 2rem;
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(26,22,18,0.1);
+    background: #fff;
+    position: relative;
+  }
+
+  .dashboard-frame img {
+    width: 100%;
+    display: block;
+  }
+
+  .dashboard-frame .frame-bar {
+    background: #e8e2da;
+    padding: 0.6rem 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+
+  /* PROJECT DESCRIPTION */
+  .project-desc-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .project-desc h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+
+  .project-desc p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .project-insights { display: flex; flex-direction: column; gap: 1rem; }
+
+  .insight-card {
+    padding: 1rem 1.25rem;
+    background: var(--cream);
+    border-top: 2px solid var(--accent-light);
+  }
+
+  .insight-card .insight-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+
+  .insight-card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .project-tasks {
+    margin-top: 1rem;
+  }
+
+  .project-tasks h4 {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+
+  .task-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .task-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--muted); }
+  .task-list li::before { content: '✓'; color: var(--accent); font-weight: 500; flex-shrink: 0; }
+
+  /* EXPERIENCE */
+  .xp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 0.5px solid var(--border); }
+  .xp-cell { padding: 1.5rem 2rem; background: var(--paper); }
+  .xp-cell h4 { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .xp-cell .xp-meta { font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; font-weight: 500; }
+  .xp-cell p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+  /* CONTACT */
+  .contact-inner {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;
+  }
+
+  .contact-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.1;
+    max-width: 500px;
+  }
+  .contact-title em { font-style: italic; color: var(--accent-light); }
+
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-end; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    padding: 0.6rem 1.25rem;
+    border: 0.5px solid var(--border);
+    transition: background 0.2s, color 0.2s;
+  }
+  .contact-link:hover { background: var(--ink); color: var(--paper); }
+
+  /* FOOTER */
+  footer {
+    padding: 1.5rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* DIVIDER */
+  .thin-rule { border: none; border-top: 0.5px solid var(--border); margin: 2.5rem 0; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    header, section { padding: 4rem 1.5rem; }
+    .about-grid, .project-desc-grid, .xp-grid { grid-template-columns: 1fr; }
+    .xp-grid { background: transparent; border: none; gap: 1rem; }
+    .xp-cell { border: 0.5px solid var(--border); }
+    .hero-skills { justify-content: flex-start; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .contact-inner { flex-direction: column; }
+    .contact-links { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Fadekemi Adefolalu</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header id="top">
+  <div class="hero-bg-text">DATA</div>
+  <div class="hero-label">Data Analyst &amp; Marketing Strategist</div>
+  <h1 class="hero-title">
+    Turning numbers into<br><em>stories that move</em><br>businesses forward.
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-bio">
+      5 years in marketing — social media, content, copywriting, UX writing, and brand strategy. 
+      Now equipped with data analytics skills to bridge the gap between <strong>creative intuition and measurable insight.</strong>
+    </p>
+    <div class="hero-skills">
+      <span class="skill-tag">Excel</span>
+      <span class="skill-tag">Power BI</span>
+      <span class="skill-tag">SQL</span>
+      <span class="skill-tag">Python</span>
+      <span class="skill-tag">Data Storytelling</span>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-container reveal">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About Me</h2>
+    </div>
+    <img src="images/492A4493.JPG" alt="About me image" class="about-img">
+  </div>
+</section>
+
+  <div class="about-grid">
+    <div class="about-main reveal">
+      <p>
+        I'm a <strong>marketing professional transitioning into data analytics</strong>, with a background that spans social media strategy, content creation, copywriting, UX writing, and branding. I know how audiences think — and now I can quantify it.
+      </p>
+      <p>
+        Currently completing a structured data analytics programme covering Excel, Power BI, SQL, and Python. My marketing experience gives me an edge most analysts don't have: I don't just read data — I know how to <strong>tell the story it's trying to tell</strong> and translate insight into decisions that matter.
+      </p>
+      <p>
+        I'm actively seeking roles where data meets creativity — whether that's as a <strong>marketing analyst, business analyst, or digital insights analyst</strong>.
+      </p>
+    </div>
+
+    <div class="about-sidebar">
+      <div class="sidebar-block reveal">
+        <h4>Analytics Skills</h4>
+        <ul>
+          <li>Microsoft Excel (Pivot Tables, KPIs, Dashboards)</li>
+          <li>Power BI (Data Modelling, DAX, Visuals)</li>
+          <li>SQL (Queries, Joins, Aggregations)</li>
+          <li>Python (EDA — in progress)</li>
+        </ul>
+      </div>
+      <div class="sidebar-block reveal">
+        <h4>Marketing Background</h4>
+        <ul>
+          <li>Social Media Strategy</li>
+          <li>Content Writing &amp; Creation</li>
+          <li>Copywriting &amp; UX Writing</li>
+          <li>Branding &amp; Product Marketing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Projects</h2>
+  </div>
+
+  <!-- PROJECT 1: EXCEL -->
+  <div class="project-block">
+    <div class="project-number">01</div>
+    <div class="project-header reveal">
+      <span class="project-tool-badge badge-excel">Microsoft Excel</span>
+      <h3 class="project-title">Sales Analysis Dashboard</h3>
+    </div>
+
+    <!-- DASHBOARD IMAGE — MAIN FOCUS -->
+    <div class="dashboard-frame reveal">
+      <div class="frame-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+      </div>
+      <img src="images/Fade Sales Analysis Dashboard.png" alt="Fadekemi Adefolalu Excel Sales Analysis Dashboard — showing product profit, sales rep revenue, city COGS, and monthly customers" />
+    </div>
+
+    <!-- DESCRIPTION BELOW -->
+    <div class="project-desc-grid reveal">
+      <div class="project-desc">
+        <h3>Project Overview</h3>
+        <p>
+          Built a comprehensive multi-chart sales analysis dashboard in Microsoft Excel, combining data cleaning, KPI calculation, pivot table analysis, and interactive slicers into a single unified view. The dashboard enables stakeholders to explore performance across products, sales representatives, cities, and time — filterable by region and product category.
+        </p>
+        <hr class="thin-rule">
+        <div class="project-tasks">
+          <h4>What was delivered</h4>
+          <ul class="task-list">
+            <li>Data quality audit and cleaning verification</li>
+            <li>KPIs calculated: Revenue (₦465.67M), COGS, Profit, and Monthly Customers (2,098)</li>
+            <li>Horizontal bar chart — Product by Profit (Laptop A13 most profitable at ₦105.3M)</li>
+            <li>Bar chart — Sales Rep by Revenue (Peter leading at ₦434.8M)</li>
+            <li>Pie chart — City by COGS (Port Harcourt highest at ₦493.8M)</li>
+            <li>Line chart — Monthly Customers by Retail vs Corporate (May showing sharp drop)</li>
+            <li>Region and Category slicers for interactive filtering</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-insights">
+        <div class="insight-card">
+          <div class="insight-label">Key Finding</div>
+          <p>Laptop A13 generated the highest profit (₦105.3M) — nearly double the second-placed product, Sofa Classic.</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Insight</div>
+          <p>May saw a dramatic collapse in both Retail and Corporate customer numbers, signalling a seasonal or operational disruption worth investigating.</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Sales Rep Analysis</div>
+          <p>Peter outperformed all other sales reps with ₦434.8M in revenue — a 15% lead over the next best performer, Musa.</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Tools Used</div>
+          <p>Microsoft Excel — Pivot Tables, KPI Cards, Charts, Slicers, Dashboard Layout</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="thin-rule" style="margin: 4rem 0;">
+
+  <!-- PROJECT 2: POWER BI -->
+  <div class="project-block">
+    <div class="project-number">02</div>
+    <div class="project-header reveal">
+      <span class="project-tool-badge badge-pbi">Power BI</span>
+      <h3 class="project-title">Sales Performance Dashboard</h3>
+    </div>
+
+    <!-- DASHBOARD IMAGE — MAIN FOCUS -->
+    <div class="dashboard-frame reveal">
+      <div class="frame-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+      </div>
+      <img src="images/Fade Sales Perfomance Power BI.png" alt="Fadekemi Adefolalu Power BI Sales Performance Dashboard — Jan to Mar 2023, showing brand profit, color purchase, monthly customers, and income level breakdown" />
+    </div>
+
+    <!-- DESCRIPTION BELOW -->
+    <div class="project-desc-grid reveal">
+      <div class="project-desc">
+        <h3>Project Overview</h3>
+        <p>
+          Designed and built an end-to-end Power BI dashboard covering January to March 2023 sales data. The project involved multi-table data cleaning, table joins, DAX-based KPI calculations, and a suite of visualisations — all wired to interactive Region and Gender slicers. The dashboard surfaces brand performance, customer demographics, purchase behaviour by colour, and income-level profitability in a single view.
+        </p>
+        <hr class="thin-rule">
+        <div class="project-tasks">
+          <h4>What was delivered</h4>
+          <ul class="task-list">
+            <li>Column-by-column data cleaning and table join across multiple tables</li>
+            <li>KPIs: Total Revenue (₦3.11M), Total Cost (₦2.17M), Profit (₦931.91K), Customers (250)</li>
+            <li>Bar chart — Total Profit by Brand (Apple #1 at ₦197K)</li>
+            <li>Bar chart — Total Purchase by Color (White leads at ₦1.22M)</li>
+            <li>Bar chart — Total Revenue by Year (2023 baseline established)</li>
+            <li>Line/bar chart — Total Customers by Month (February dip identified)</li>
+            <li>Donut chart — Sum of Profit by Income Level (Medium 37.23%, Low 32.43%, High 30.34%)</li>
+            <li>Region and Gender slicers; key insight callouts embedded in the sidebar</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project-insights">
+        <div class="insight-card">
+          <div class="insight-label">Key Finding</div>
+          <p>Apple products drove the highest profit (₦197K) — 23% more than second-place brands Lenovo and Samsung.</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Customer Insight</div>
+          <p>164 of 250 customers (65.6%) are female — suggesting a strong female buyer base that should inform future marketing strategy.</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Insight</div>
+          <p>Electronics peaked in February while overall sales dipped — a nuanced finding only visible when filtering by category.</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-label">Tools Used</div>
+          <p>Power BI — Power Query, Table Joins, DAX, KPI Cards, Slicers, Donut &amp; Bar Charts</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Marketing Experience</h2>
+  </div>
+
+  <div class="xp-grid reveal">
+    <div class="xp-cell">
+      <div class="xp-meta">Social Media &amp; Content</div>
+      <h4>Content Strategy &amp; Creation</h4>
+      <p>5 years managing brand voices across platforms — developing content strategies, growing audiences, and producing written and visual content that converts.</p>
+    </div>
+    <div class="xp-cell">
+      <div class="xp-meta">Writing &amp; Messaging</div>
+      <h4>Copywriting &amp; UX Writing</h4>
+      <p>Crafting clear, purposeful copy for product interfaces, campaigns, and brand communications — always with the user's journey in mind.</p>
+    </div>
+    <div class="xp-cell">
+      <div class="xp-meta">Brand &amp; Identity</div>
+      <h4>Branding Strategy</h4>
+      <p>Building and maintaining brand identities — from visual language to tone of voice — ensuring consistency across every customer touchpoint.</p>
+    </div>
+    <div class="xp-cell">
+      <div class="xp-meta">Strategy</div>
+      <h4>Product Marketing</h4>
+      <p>Exposure to go-to-market strategy, positioning, and product storytelling — understanding how data-driven decisions shape marketing outcomes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <h2 class="contact-title">Let's build something<br><em>data-driven</em> together.</h2>
+      <p style="color: var(--muted); margin-top: 1rem; font-size: 0.95rem; max-width: 380px;">Open to marketing analyst, business analyst, and data analyst roles. Available for freelance and full-time opportunities.</p>
+    </div>
+    <div class="contact-links reveal">
+      <a href="mailto:adefolalufadekemi@gmail.com" class="contact-link">✉ adefolalufadekemi@gmail.com</a>
+      <a href="https://linkedin.com/in/fadekemi-adefolalu" class="contact-link" target="_blank">in LinkedIn</a>
+      <a href="https://github.com/Ademi18" class="contact-link" target="_blank">⌥ GitHub</a>
+      <a href="https://x.com/fadeadefolalu" class="contact-link" target="_blank">X fadeadefolalu</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Fadekemi Adefolalu</span>
+  <span>Data Analyst · Marketing Strategist · Lagos, Nigeria</span>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
