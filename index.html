@@ -3,739 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fadekemi Adefolalu — Data Analyst Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Fadekemi Adefolalu — Marketing Strategist & Aspiring Data Analyst</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --ink: #1a1612;
-    --paper: #f5f0e8;
-    --cream: #ede7d9;
-    --warm-mid: #c4a882;
-    --accent: #8b4513;
-    --accent-light: #d4956a;
-    --muted: #7a6f63;
-    --border: rgba(26,22,18,0.12);
-    --serif: 'DM Serif Display', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
+  :root{
+    --navy:#10243E;
+    --navy-light:#1B3A5C;
+    --teal:#2BA89A;
+    --teal-light:#E6F5F3;
+    --cream:#FAF8F4;
+    --ink:#1B1F23;
+    --gray:#5B6470;
+    --line:#E3E0D8;
   }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--sans);
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 16px;
-    line-height: 1.7;
-    font-weight: 300;
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI',Helvetica,Arial,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
   }
+  h1,h2,h3,h4{
+    font-family:Georgia,'Times New Roman',serif;
+    color:var(--navy);
+    line-height:1.15;
+  }
+  a{color:var(--teal);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
 
   /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 3rem;
-    background: rgba(245,240,232,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 0.5px solid var(--border);
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(250,248,244,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
   }
-  .nav-logo { font-family: var(--serif); font-size: 1.15rem; letter-spacing: 0.01em; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.85rem; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--accent); }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo{font-weight:700;font-size:18px;color:var(--navy);font-family:Georgia,serif;}
+  .navlinks{display:flex;gap:28px;list-style:none;}
+  .navlinks a{color:var(--navy);font-size:14px;font-weight:600;letter-spacing:.03em;text-decoration:none;}
+  .navlinks a:hover{color:var(--teal);}
 
   /* HERO */
-  header {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 6rem 3rem 4rem;
-    border-bottom: 0.5px solid var(--border);
-    position: relative;
-    overflow: hidden;
+  header.hero{padding:150px 0 90px;border-bottom:1px solid var(--line);}
+  .eyebrow{
+    display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;
+    color:var(--teal);text-transform:uppercase;margin-bottom:18px;
+  }
+  .hero h1{font-size:44px;max-width:760px;margin-bottom:22px;}
+  .hero h1 em{color:var(--teal);font-style:normal;}
+  .hero p.lede{font-size:18px;color:var(--gray);max-width:620px;margin-bottom:26px;}
+  .tags{display:flex;gap:10px;flex-wrap:wrap;}
+  .tag{
+    font-size:13px;font-weight:600;color:var(--navy);
+    border:1px solid var(--line);border-radius:20px;padding:6px 14px;background:#fff;
   }
 
-  .hero-bg-text {
-    position: absolute;
-    top: 50%; left: -2rem;
-    transform: translateY(-50%);
-    font-family: var(--serif);
-    font-size: clamp(7rem, 18vw, 18rem);
-    color: rgba(26,22,18,0.04);
-    white-space: nowrap;
-    user-select: none;
-    line-height: 1;
-    pointer-events: none;
+  section{padding:80px 0;}
+  .section-label{
+    font-size:13px;font-weight:700;color:var(--teal);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;
   }
-
-  .hero-label {
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  .hero-title {
-    font-family: var(--serif);
-    font-size: clamp(3rem, 7vw, 6.5rem);
-    line-height: 1.05;
-    max-width: 800px;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.35s forwards;
-  }
-
-  .hero-title em { font-style: italic; color: var(--accent-light); }
-
-  .hero-bottom {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    margin-top: 3.5rem;
-    gap: 2rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.9s 0.55s forwards;
-  }
-
-  .hero-bio {
-    max-width: 440px;
-    color: var(--muted);
-    font-size: 1rem;
-    line-height: 1.8;
-    border-left: 2px solid var(--warm-mid);
-    padding-left: 1.25rem;
-  }
-
-  .hero-skills {
-    display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: flex-end;
-  }
-
-  .skill-tag {
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 0.45rem 1rem;
-    border: 0.5px solid var(--border);
-    border-radius: 2px;
-    background: transparent;
-    color: var(--muted);
-  }
-
-  /* SECTION STRUCTURE */
-  section { padding: 5rem 3rem; border-bottom: 0.5px solid var(--border); }
-
-  .section-header {
-    display: flex; align-items: baseline; gap: 1.5rem;
-    margin-bottom: 3.5rem;
-  }
-
-  .section-num {
-    font-family: var(--serif);
-    font-size: 0.85rem;
-    color: var(--warm-mid);
-    font-style: italic;
-  }
-
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  }
+  .section-title{font-size:30px;margin-bottom:36px;}
 
   /* ABOUT */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: start;
+  #about .grid{display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:start;}
+  #about img{width:100%;border-radius:6px;border:1px solid var(--line);object-fit:cover;aspect-ratio:1/1;}
+  #about p{margin-bottom:16px;color:var(--ink);}
+  .skill-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px;}
+  .skill-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px 22px;}
+  .skill-box h4{font-size:14px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;color:var(--navy);}
+  .skill-box ul{list-style:none;}
+  .skill-box li{font-size:14.5px;color:var(--gray);padding:4px 0;}
+  .skill-box li::before{content:"– ";color:var(--teal);}
+  .note{
+    font-size:13.5px;color:var(--gray);background:var(--teal-light);border-left:3px solid var(--teal);
+    padding:10px 14px;border-radius:4px;margin-top:18px;
   }
-
-.about-img {
-  float: right;
-  width: 250px;
-  margin: 0 0 1rem 1.5rem;
-  border-radius: 8px;
-}
-
-.about-container::after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-  .about-main p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1.05rem; }
-  .about-main strong { color: var(--ink); font-weight: 500; }
-
-  .about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
-
-  .sidebar-block {
-    padding: 1.25rem 1.5rem;
-    background: var(--cream);
-    border-left: 2px solid var(--warm-mid);
-  }
-
-  .sidebar-block h4 {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 0.75rem;
-  }
-
-  .sidebar-block ul { list-style: none; }
-  .sidebar-block ul li {
-    font-size: 0.92rem;
-    color: var(--muted);
-    padding: 0.25rem 0;
-    border-bottom: 0.5px solid var(--border);
-  }
-  .sidebar-block ul li:last-child { border-bottom: none; }
-  .sidebar-block ul li::before { content: '— '; color: var(--warm-mid); }
 
   /* PROJECTS */
-  .project-block {
-    margin-bottom: 5rem;
+  .project{
+    background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:32px;margin-bottom:32px;
   }
-  .project-block:last-child { margin-bottom: 0; }
+  .project-meta{font-size:12.5px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+  .project h3{font-size:22px;margin-bottom:18px;}
+  .project img{width:100%;border-radius:6px;border:1px solid var(--line);margin-bottom:22px;display:block;}
+  .project-overview{color:var(--gray);margin-bottom:18px;}
+  .project ul{margin:0 0 18px 18px;color:var(--ink);}
+  .project ul li{margin-bottom:6px;}
+  .callouts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:18px;}
+  .callout{background:var(--teal-light);border-radius:6px;padding:14px 16px;}
+  .callout .label{font-size:11.5px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;}
+  .callout p{font-size:13.5px;color:var(--ink);}
+  .tools-used{font-size:13.5px;color:var(--gray);border-top:1px solid var(--line);padding-top:14px;}
+  .tools-used strong{color:var(--navy);}
 
-  .project-number {
-    font-family: var(--serif);
-    font-size: 5rem;
-    line-height: 1;
-    color: rgba(26,22,18,0.06);
-    margin-bottom: -1.5rem;
-    font-style: italic;
-  }
-
-  .project-header {
-    display: flex; align-items: baseline; gap: 1rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .project-tool-badge {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.8rem;
-    border-radius: 1px;
-    color: #fff;
-  }
-
-  .badge-excel { background: #217346; }
-  .badge-pbi { background: #F2C811; color: #1a1612; }
-
-  .project-title {
-    font-family: var(--serif);
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-  }
-
-  /* DASHBOARD IMAGE — MAIN FOCUS */
-  .dashboard-frame {
-    margin: 1.5rem 0 2rem;
-    border: 0.5px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 8px 40px rgba(26,22,18,0.1);
-    background: #fff;
-    position: relative;
-  }
-
-  .dashboard-frame img {
-    width: 100%;
-    display: block;
-  }
-
-  .dashboard-frame .frame-bar {
-    background: #e8e2da;
-    padding: 0.6rem 1rem;
-    display: flex; align-items: center; gap: 0.5rem;
-    border-bottom: 0.5px solid var(--border);
-  }
-
-  .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dot-r { background: #ff5f57; }
-  .dot-y { background: #febc2e; }
-  .dot-g { background: #28c840; }
-
-  /* PROJECT DESCRIPTION */
-  .project-desc-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 2.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .project-desc h3 {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    margin-bottom: 0.6rem;
-    color: var(--ink);
-  }
-
-  .project-desc p {
-    color: var(--muted);
-    font-size: 0.95rem;
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-
-  .project-insights { display: flex; flex-direction: column; gap: 1rem; }
-
-  .insight-card {
-    padding: 1rem 1.25rem;
-    background: var(--cream);
-    border-top: 2px solid var(--accent-light);
-  }
-
-  .insight-card .insight-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 0.3rem;
-  }
-
-  .insight-card p {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-
-  .project-tasks {
-    margin-top: 1rem;
-  }
-
-  .project-tasks h4 {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    font-weight: 500;
-  }
-
-  .task-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
-  .task-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--muted); }
-  .task-list li::before { content: '✓'; color: var(--accent); font-weight: 500; flex-shrink: 0; }
-
-  /* EXPERIENCE */
-  .xp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 0.5px solid var(--border); }
-  .xp-cell { padding: 1.5rem 2rem; background: var(--paper); }
-  .xp-cell h4 { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.3rem; }
-  .xp-cell .xp-meta { font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem; font-weight: 500; }
-  .xp-cell p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+  /* EXPERTISE */
+  .expertise-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .expertise-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:22px 24px;}
+  .expertise-card .kicker{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;}
+  .expertise-card h4{font-size:18px;margin:6px 0 10px;}
+  .expertise-card p{font-size:14px;color:var(--gray);}
 
   /* CONTACT */
-  .contact-inner {
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem;
+  #contact{background:var(--navy);color:#fff;text-align:center;}
+  #contact h2{color:#fff;font-size:30px;margin-bottom:10px;}
+  #contact p{color:#C8D2DE;max-width:520px;margin:0 auto 28px;}
+  .contact-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;}
+  .contact-links a{
+    color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:24px;padding:10px 20px;font-size:14px;font-weight:600;
   }
+  .contact-links a:hover{background:var(--teal);border-color:var(--teal);text-decoration:none;}
 
-  .contact-title {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 5vw, 4rem);
-    line-height: 1.1;
-    max-width: 500px;
-  }
-  .contact-title em { font-style: italic; color: var(--accent-light); }
+  footer{padding:24px 0;text-align:center;font-size:12.5px;color:var(--gray);}
 
-  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-end; }
-  .contact-link {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    text-decoration: none;
-    color: var(--ink);
-    font-size: 0.9rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    padding: 0.6rem 1.25rem;
-    border: 0.5px solid var(--border);
-    transition: background 0.2s, color 0.2s;
-  }
-  .contact-link:hover { background: var(--ink); color: var(--paper); }
-
-  /* FOOTER */
-  footer {
-    padding: 1.5rem 3rem;
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* DIVIDER */
-  .thin-rule { border: none; border-top: 0.5px solid var(--border); margin: 2.5rem 0; }
-
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.2rem; }
-    header, section { padding: 4rem 1.5rem; }
-    .about-grid, .project-desc-grid, .xp-grid { grid-template-columns: 1fr; }
-    .xp-grid { background: transparent; border: none; gap: 1rem; }
-    .xp-cell { border: 0.5px solid var(--border); }
-    .hero-skills { justify-content: flex-start; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-    .contact-inner { flex-direction: column; }
-    .contact-links { align-items: flex-start; }
+  @media (max-width:760px){
+    .hero h1{font-size:32px;}
+    #about .grid{grid-template-columns:1fr;}
+    .skill-cols{grid-template-columns:1fr;}
+    .expertise-grid{grid-template-columns:1fr;}
+    .navlinks{gap:16px;}
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#top" class="nav-logo" style="text-decoration: none; color: inherit;">Fadekemi Adefolalu</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="wrap">
+    <a href="#top" class="logo">Fadekemi Adefolalu</a>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#expertise">Background</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<!-- HERO -->
-<header id="top">
-  <div class="hero-bg-text">DATA</div>
-  <div class="hero-label">Data Analyst &amp; Marketing Strategist</div>
-  <h1 class="hero-title">
-    Turning numbers into<br><em>stories that move</em><br>businesses forward.
-  </h1>
-  <div class="hero-bottom">
-    <p class="hero-bio">
-      Data analyst with a strong foundation in marketing strategy — combining analytical skills in Excel, Power BI, SQL, and Python with hands-on experience in brand, content, and consumer behaviour. I turn <strong>raw data into decisions that actually land.</strong>
-    </p>
-    <div class="hero-skills">
-      <span class="skill-tag">Excel</span>
-      <span class="skill-tag">Power BI</span>
-      <span class="skill-tag">SQL</span>
-      <span class="skill-tag">Python</span>
-      <span class="skill-tag">Data Storytelling</span>
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">Marketing Strategist · Data Analytics (TS Academy Graduate)</span>
+    <h1>Turning five years of marketing instinct into <em>data-driven decisions</em>.</h1>
+    <p class="lede">I've spent 5 years inside brand, content, and consumer behaviour — and I've now completed hands-on analytics training (TS Academy) in Excel, Power BI, SQL, and Python to bring that instinct to the data itself.</p>
+    <div class="tags">
+      <span class="tag">Excel</span>
+      <span class="tag">Power BI</span>
+      <span class="tag">SQL</span>
+      <span class="tag">Python</span>
+      <span class="tag">Marketing Strategy</span>
+      <span class="tag">Data Storytelling</span>
     </div>
   </div>
 </header>
 
-<!-- ABOUT -->
 <section id="about">
-  <div class="about-container">
-  <div class="section-header">
-    <span class="section-num">01</span>
-    <h2 class="section-title">About Me</h2>
-  </div>
-  <img src="492A4493.JPG" alt="About me image" class="about-img">
-    <div class="about-main">
-      <p>
-        I am Fadekemi Adefolalu, <strong>a data analyst with five years of hands-on experience working at the intersection of strategy, content, and consumer behaviour.</strong> I bring a rare combination of analytical rigour and communication instinct: I know how to find the insight in the data, and I know how to make it matter to the people in the room.
-      </p>
-      <p>
-        I work across Excel, Power BI, SQL, and Python; building dashboards, analysing performance, and translating complex datasets into clear, actionable narratives. My background in brand strategy, content, and audience behaviour means I bring context to every dataset that most analysts don't. I understand the "so what" before I've even written the query.
-      </p>
-      <p>
-        I'm drawn to roles where data sits close to the business: consumer insights, marketing analytics, business intelligence, product analytics. Whatever the domain, my approach doesn't change: ask the right question, follow the data honestly, and communicate the answer with clarity and confidence.
-      </p>
-    </div>
-  </div>
-</section>
+  <div class="wrap">
+    <div class="section-label">About</div>
+    <div class="grid">
+      <img src="https://ademi18.github.io/492A4493.JPG" alt="Fadekemi Adefolalu">
+      <div>
+        <h2 class="section-title">A marketer who's learned to read the numbers, not just the narrative.</h2>
+        <p>I'm Fadekemi Adefolalu, a marketing strategist with five years of hands-on experience across content, brand, and consumer behaviour. I've now completed a Data Analytics bootcamp with TS Academy — and I'm building a parallel career in data analytics, bringing that marketing context with me rather than starting from a blank slate.</p>
+        <p>I work across Excel, Power BI, SQL, and Python: building dashboards, modeling data, and translating datasets into clear, actionable narratives — including a capstone project analyzing 85,000+ logistics trips and $299M in revenue. Five years of watching what audiences respond to, what campaigns convert, and what messaging lands means I already understand the "so what" of a dataset — I can now prove it with a query instead of a gut check.</p>
+        <p>I'm drawn to roles where data sits close to the business: consumer insights, marketing analytics, business intelligence. My approach: ask the right question, follow the data honestly, and communicate the answer with clarity and confidence — whether that's to a dashboard or a deck.</p>
 
-    <div class="about-sidebar">
-      <div class="sidebar-block reveal">
-        <h4>Analytics Skills</h4>
-        <ul>
-          <li>Microsoft Excel (Pivot Tables, KPIs, Dashboards)</li>
-          <li>Power BI (Data Modelling, DAX, Visuals)</li>
-          <li>SQL (Queries, Joins, Aggregations)</li>
-          <li>Python (EDA)</li>
-        </ul>
-      </div>
-      <div class="sidebar-block reveal">
-        <h4>Marketing Background</h4>
-        <ul>
-          <li>Consumer &amp; Audience Behaviour</li>
-          <li>Campaign &amp; Content Performance</li>
-          <li>Brand Strategy &amp; Positioning</li>
-          <li>Product &amp; UX Thinking</li>
-        </ul>
+        <div class="skill-cols">
+          <div class="skill-box">
+            <h4>Analytics — TS Academy Trained</h4>
+            <ul>
+              <li>Excel (Pivot Tables, KPIs, Dashboards)</li>
+              <li>Power BI (Data Modelling, DAX, Visuals)</li>
+              <li>SQL (Queries, Joins, Aggregations)</li>
+              <li>Python (Exploratory Data Analysis)</li>
+            </ul>
+          </div>
+          <div class="skill-box">
+            <h4>Marketing — 5+ Years</h4>
+            <ul>
+              <li>Consumer & Audience Behaviour</li>
+              <li>Campaign & Content Performance</li>
+              <li>Brand Strategy & Positioning</li>
+              <li>Product & UX Thinking</li>
+            </ul>
+          </div>
+        </div>
+        <p class="note">Completed a Data Analytics bootcamp with TS Academy (Excel, Power BI, SQL, Python) and a DecodeLabs Data Analytics Internship (Excel, SQL, Data Visualization). Currently completing an Analyst Lab internship focused on Python and EDA.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
-  <div class="section-header reveal">
-    <span class="section-num">02</span>
-    <h2 class="section-title">Projects</h2>
-  </div>
+  <div class="wrap">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Independent analytics work, built end to end.</h2>
 
-  <!-- PROJECT 1: EXCEL -->
-  <div class="project-block">
-    <div class="project-number">01</div>
-    <div class="project-header reveal">
-      <span class="project-tool-badge badge-excel">Microsoft Excel</span>
-      <h3 class="project-title">Sales Analysis Dashboard</h3>
+    <div class="project">
+      <div class="project-meta">Power BI · TS Academy Capstone</div>
+      <h3>FleetOps Logistics — Operations Analytics Report (2022–2024)</h3>
+      <img src="Fadekemi_Capstone_Dashboard.png" alt="FleetOps Logistics Operations Analytics dashboard with revenue, on-time delivery, route yield, and safety KPIs">
+      <p class="project-overview">My TS Academy capstone: a full Power BI build analyzing a 14-table logistics dataset spanning 85,410 trips, 122M miles, and $299M in revenue across 150 drivers, 120 trucks, and 200 customers (2022–2024). Built the complete data model, all DAX measures, and an 11-chart dashboard with 8 KPI cards and 5 interactive slicers.</p>
+      <img src="Fadekemi_Capstone_Findings.png" alt="FleetOps Logistics key findings and recommendations summary">
+      <ul>
+        <li>Diagnosed a 22-point gap between pickup (66.7%) and delivery (44.6%) on-time rates, pointing to a last-mile detention bottleneck</li>
+        <li>Found route yield varies 2.1x between top and bottom corridors (Philadelphia–NY at $3.69/mi vs. Charlotte–Denver at $1.70/mi)</li>
+        <li>Quantified gross margin improvement from 62.7% to 65.18%, driven primarily by a $4.3M fuel-cost saving</li>
+      </ul>
+      <div class="callouts">
+        <div class="callout"><div class="label">Revenue Opportunity</div><p>Recommended systematic detention billing automation, projected to recover $2–5M annually in currently unbilled costs.</p></div>
+        <div class="callout"><div class="label">Safety Insight</div><p>Equipment damage ($741K) is the leading safety cost, with incidents up 37.6% year-over-year.</p></div>
+        <div class="callout"><div class="label">Load Mix Insight</div><p>Shifting 10% of volume to high-yield short-haul lanes projected to add $1.5–2.5M in revenue with no new assets.</p></div>
+      </div>
+      <div class="tools-used"><strong>Tools:</strong> Power BI — Data Modeling, Power Query, DAX, KPI Cards, Slicers, Multi-Chart Dashboard Design</div>
     </div>
 
-    <!-- DASHBOARD IMAGE — MAIN FOCUS -->
-    <div class="dashboard-frame reveal">
-      <div class="frame-bar">
-        <div class="dot dot-r"></div>
-        <div class="dot dot-y"></div>
-        <div class="dot dot-g"></div>
+    <div class="project">
+      <div class="project-meta">Excel · SQL · DecodeLabs Internship</div>
+      <h3>E-Commerce Sales Performance Dashboard</h3>
+      <img src="Fadekemi_DecodeLabs_Dashboard.png" alt="DecodeLabs Sales Performance Dashboard showing revenue, monthly trend, payment method, referral source, coupon analysis, and order status">
+      <p class="project-overview">A three-week internship project: cleaned and queried a 1,200-order retail dataset with SQL (filtering, aggregation, grouping), then designed an interactive Excel dashboard to communicate performance across products, payment methods, referral sources, coupons, and order status.</p>
+      <ul>
+        <li>KPIs: $1,264,762 total revenue, 1,200 orders, $1,054 average order value, 3,535 units sold</li>
+        <li>Revenue by Product, Monthly Sales Trend, Payment Method split, Referral Source Performance, Coupon Analysis, and Order Status breakdown</li>
+        <li>Product, Payment Method, Order Status, and Coupon Code slicers for interactive filtering</li>
+      </ul>
+      <div class="callouts">
+        <div class="callout"><div class="label">Fulfillment Red Flag</div><p>Cancelled orders (250) outnumbered successfully Delivered orders (231) — a checkout or fulfillment issue worth investigating.</p></div>
+        <div class="callout"><div class="label">Referral Insight</div><p>Instagram drove the highest referral revenue at $275,285, ahead of Email, Google, and Facebook.</p></div>
+        <div class="callout"><div class="label">Coupon Insight</div><p>FREESHIP was the most-used coupon (313 redemptions), narrowly ahead of orders with no coupon at all (309).</p></div>
       </div>
-      <img src="Fade%20Sales%20Analysis%20Dashboard.png" alt="Fadekemi Adefolalu Excel Sales Analysis Dashboard — showing product profit, sales rep revenue, city COGS, and monthly customers" />
+      <div class="tools-used"><strong>Tools:</strong> SQL (SQLite) — Filtering, Aggregation, Grouping · Excel — Pivot Tables, KPI Cards, Charts, Slicers</div>
     </div>
 
-    <!-- DESCRIPTION BELOW -->
-    <div class="project-desc-grid reveal">
-      <div class="project-desc">
-        <h3>Project Overview</h3>
-        <p>
-          Built a comprehensive multi-chart sales analysis dashboard in Microsoft Excel, combining data cleaning, KPI calculation, pivot table analysis, and interactive slicers into a single unified view. The dashboard enables stakeholders to explore performance across products, sales representatives, cities, time, and filter by region and product category.
-        </p>
-        <hr class="thin-rule">
-        <div class="project-tasks">
-          <h4>What was delivered</h4>
-          <ul class="task-list">
-            <li>Data quality audit and cleaning verification</li>
-            <li>KPIs calculated: Revenue (₦465.67M), COGS, Profit, and Monthly Customers (2,098)</li>
-            <li>Horizontal bar chart — Product by Profit (Laptop A13 most profitable at ₦105.3M)</li>
-            <li>Bar chart — Sales Rep by Revenue (Peter leading at ₦434.8M)</li>
-            <li>Pie chart — City by COGS (Port Harcourt highest at ₦493.8M)</li>
-            <li>Line chart — Monthly Customers by Retail vs Corporate (May showing sharp drop)</li>
-            <li>Region and Category slicers for interactive filtering</li>
-          </ul>
-        </div>
+    <div class="project">
+      <div class="project-meta">Microsoft Excel</div>
+      <h3>Sales Analysis Dashboard</h3>
+      <img src="https://ademi18.github.io/Fade%20Sales%20Analysis%20Dashboard.png" alt="Excel Sales Analysis Dashboard showing product profit, sales rep revenue, city COGS, and monthly customers">
+      <p class="project-overview">Built a multi-chart sales analysis dashboard in Excel, combining data cleaning, KPI calculation, pivot table analysis, and interactive slicers in a single view spanning products, sales reps, cities, and time.</p>
+      <ul>
+        <li>KPIs calculated: Revenue (NGN 465.67M), COGS, Profit, and Monthly Customers (2,098)</li>
+        <li>Product by Profit, Sales Rep by Revenue, City by COGS, and Monthly Customers (Retail vs Corporate) charts</li>
+        <li>Region and Category slicers for interactive filtering</li>
+      </ul>
+      <div class="callouts">
+        <div class="callout"><div class="label">Key Finding</div><p>Laptop A13 generated the highest profit (NGN 105.3M) — nearly double the second-placed product.</p></div>
+        <div class="callout"><div class="label">Sales Rep Insight</div><p>Peter outperformed all other reps with NGN 434.8M in revenue, a 15% lead over the next best.</p></div>
+        <div class="callout"><div class="label">Operational Insight</div><p>May saw a sharp collapse in Retail and Corporate customer numbers, worth investigating further.</p></div>
       </div>
-
-      <div class="project-insights">
-        <div class="insight-card">
-          <div class="insight-label">Key Finding</div>
-          <p>Laptop A13 generated the highest profit (₦105.3M) — nearly double the second-placed product, Sofa Classic.</p>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Insight</div>
-          <p>May saw a dramatic collapse in both Retail and Corporate customer numbers, signalling a seasonal or operational disruption worth investigating.</p>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Sales Rep Analysis</div>
-          <p>Peter outperformed all other sales reps with ₦434.8M in revenue; a 15% lead over the next best performer, Musa.</p>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Tools Used</div>
-          <p>Microsoft Excel: Pivot Tables, KPI Cards, Charts, Slicers, Dashboard Layout</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <hr class="thin-rule" style="margin: 4rem 0;">
-
-  <!-- PROJECT 2: POWER BI -->
-  <div class="project-block">
-    <div class="project-number">02</div>
-    <div class="project-header reveal">
-      <span class="project-tool-badge badge-pbi">Power BI</span>
-      <h3 class="project-title">Sales Performance Dashboard</h3>
+      <div class="tools-used"><strong>Tools:</strong> Microsoft Excel — Pivot Tables, KPI Cards, Charts, Slicers, Dashboard Layout</div>
     </div>
 
-    <!-- DASHBOARD IMAGE — MAIN FOCUS -->
-    <div class="dashboard-frame reveal">
-      <div class="frame-bar">
-        <div class="dot dot-r"></div>
-        <div class="dot dot-y"></div>
-        <div class="dot dot-g"></div>
+    <div class="project">
+      <div class="project-meta">Power BI</div>
+      <h3>Sales Performance Dashboard</h3>
+      <img src="https://ademi18.github.io/Fade%20Sales%20Perfomance%20Power%20BI.png" alt="Power BI Sales Performance Dashboard for Jan to Mar 2023">
+      <p class="project-overview">Designed an end-to-end Power BI dashboard covering January–March 2023 sales data: multi-table cleaning, joins, DAX-based KPIs, and visualisations wired to Region and Gender slicers.</p>
+      <ul>
+        <li>KPIs: Revenue (NGN 3.11M), Cost (NGN 2.17M), Profit (NGN 931.91K), Customers (250)</li>
+        <li>Profit by Brand, Purchase by Colour, Revenue by Year, Customers by Month, Profit by Income Level</li>
+      </ul>
+      <div class="callouts">
+        <div class="callout"><div class="label">Key Finding</div><p>Apple products drove the highest profit (NGN 197K) — 23% more than second-place brands.</p></div>
+        <div class="callout"><div class="label">Customer Insight</div><p>65.6% of customers are female — a buyer base worth shaping future marketing strategy around.</p></div>
+        <div class="callout"><div class="label">Category Insight</div><p>Electronics peaked in February while overall sales dipped — only visible when filtering by category.</p></div>
       </div>
-      <img src="Fade%20Sales%20Perfomance%20Power%20BI.png" alt="Fadekemi Adefolalu Power BI Sales Performance Dashboard — Jan to Mar 2023, showing brand profit, color purchase, monthly customers, and income level breakdown" />
+      <div class="tools-used"><strong>Tools:</strong> Power BI — Power Query, Table Joins, DAX, KPI Cards, Slicers, Donut & Bar Charts</div>
     </div>
 
-    <!-- DESCRIPTION BELOW -->
-    <div class="project-desc-grid reveal">
-      <div class="project-desc">
-        <h3>Project Overview</h3>
-        <p>
-          Designed and built an end-to-end Power BI dashboard covering January to March 2023 sales data. The project involved multi-table data cleaning, table joins, DAX-based KPI calculations, and a suite of visualisations, all wired to interactive Region and Gender slicers. The dashboard surfaces brand performance, customer demographics, purchase behaviour by colour, and income-level profitability in a single view.
-        </p>
-        <hr class="thin-rule">
-        <div class="project-tasks">
-          <h4>What was delivered</h4>
-          <ul class="task-list">
-            <li>Column-by-column data cleaning and table join across multiple tables</li>
-            <li>KPIs: Total Revenue (₦3.11M), Total Cost (₦2.17M), Profit (₦931.91K), Customers (250)</li>
-            <li>Bar chart — Total Profit by Brand (Apple #1 at ₦197K)</li>
-            <li>Bar chart — Total Purchase by Color (White leads at ₦1.22M)</li>
-            <li>Bar chart — Total Revenue by Year (2023 baseline established)</li>
-            <li>Line/bar chart — Total Customers by Month (February dip identified)</li>
-            <li>Donut chart — Sum of Profit by Income Level (Medium 37.23%, Low 32.43%, High 30.34%)</li>
-            <li>Region and Gender slicers; key insight callouts embedded in the sidebar</li>
-          </ul>
-        </div>
+    <div class="project">
+      <div class="project-meta">Power BI</div>
+      <h3>Maven Marketing Campaign & Customer Insights Dashboard</h3>
+      <img src="https://ademi18.github.io/Fade%20Maven%20Power%20BI%20Dashboard.png" alt="Maven Marketing Campaign Performance and Customer Insights Power BI Dashboard">
+      <p class="project-overview">Analysed marketing campaign data for 2,240 customers across customer profiles, product preferences, campaign outcomes, and channel performance, delivered as an interactive exploratory report.</p>
+      <ul>
+        <li>KPIs: 2K Customers, $52K Avg Income, $606 Avg Spend, 4.1 Avg Web Purchases</li>
+        <li>Age Distribution, Channel Performance, Product Spend Ranking, Income by Marital Status, Family Composition, Customer Segmentation, Campaign Success Rate</li>
+        <li>7 interactive slicers: Education, Marital Status, Age Group, Income Group, Campaign Accepted, Customer Segment</li>
+      </ul>
+      <div class="callouts">
+        <div class="callout"><div class="label">Key Finding</div><p>The Last Campaign outperformed all others with 15 conversions, more than double the next best.</p></div>
+        <div class="callout"><div class="label">Product Insight</div><p>Wines drove the highest spend by a wide margin ($681K), nearly double the second-best product.</p></div>
+        <div class="callout"><div class="label">Customer Profile</div><p>The average customer is 55+, earns ~$52K, spends ~$606, and most likely has no kids.</p></div>
       </div>
-
-      <div class="project-insights">
-        <div class="insight-card">
-          <div class="insight-label">Key Finding</div>
-          <p>Apple products drove the highest profit (₦197K) — 23% more than second-place brands Lenovo and Samsung.</p>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Customer Insight</div>
-          <p>164 of 250 customers (65.6%) are female — suggesting a strong female buyer base that should inform future marketing strategy.</p>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Insight</div>
-          <p>Electronics peaked in February while overall sales dipped — a nuanced finding only visible when filtering by category.</p>
-        </div>
-        <div class="insight-card">
-          <div class="insight-label">Tools Used</div>
-          <p>Power BI — Power Query, Table Joins, DAX, KPI Cards, Slicers, Donut &amp; Bar Charts</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
- <hr class="thin-rule" style="margin: 4rem 0;">
-
-<!-- PROJECT 3: MAVEN MARKETING POWER BI -->
-<div class="project-block">
-  <div class="project-number">03</div>
-  <div class="project-header reveal">
-    <span class="project-tool-badge badge-pbi">Power BI</span>
-    <h3 class="project-title">Maven Marketing Campaign & Customer Insights Dashboard</h3>
-  </div>
-
-  <!-- DASHBOARD IMAGE — MAIN FOCUS -->
-  <div class="dashboard-frame reveal">
-    <div class="frame-bar">
-      <div class="dot dot-r"></div>
-      <div class="dot dot-y"></div>
-      <div class="dot dot-g"></div>
-    </div>
-    <img src="Fade%20Maven%20Power%20BI%20Dashboard.png" alt="Fadekemi Adefolalu — Maven Marketing Campaign Performance and Customer Insights Power BI Dashboard" />
-  </div>
-
-  <!-- DESCRIPTION BELOW -->
-  <div class="project-desc-grid reveal">
-    <div class="project-desc">
-      <h3>Project Overview</h3>
-      <p>
-        Analysed marketing campaign data for 2,240 Maven Marketing customers covering customer profiles, product preferences, campaign outcomes, and purchase channel performance. The goal was to surface actionable insights for management across six business questions, delivered as an interactive Power BI exploratory report.
-      </p>
-      <hr class="thin-rule">
-      <div class="project-tasks">
-        <h4>What was delivered</h4>
-        <ul class="task-list">
-          <li>Identified and handled null values and outliers in the dataset before analysis</li>
-          <li>KPIs surfaced: 2K Total Customers, $52K Avg Income, $606 Avg Spend, 4.1 Avg Web Purchases</li>
-          <li>Bar chart — Customer Age Distribution (55+ segment dominates at 1.2K customers)</li>
-          <li>Bar chart — Purchase Channel Performance (Store leads at 5.8 avg purchases)</li>
-          <li>Bar chart — Product Spend Ranking (Wines #1 at $681K total spend)</li>
-          <li>Bar chart — Income by Marital Status (Widowed customers have the highest average income at $72K)</li>
-          <li>Scatter plot — Income vs Web Purchases (exploring web purchase drivers)</li>
-          <li>Donut chart — Family Composition (No Kids = 48.3% of customer base)</li>
-          <li>Treemap — Customer Segmentation by value (Low, Mid, High)</li>
-          <li>Bar chart — Campaign Success Rate (Last Campaign most successful at 15 conversions)</li>
-          <li>7 interactive slicers: Education, Marital Status, Age Group, Income Group, Campaign Accepted, Customer Segment</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="project-insights">
-      <div class="insight-card">
-        <div class="insight-label">Key Finding</div>
-        <p>The Last Campaign outperformed all others with 15 conversions, more than double Campaign 4, the second best at 8.</p>
-      </div>
-      <div class="insight-card">
-        <div class="insight-label">Product Insight</div>
-        <p>Wines drove the highest spend by a significant margin ($681K), nearly double that of Meat ($374K), the second best-selling product.</p>
-      </div>
-      <div class="insight-card">
-        <div class="insight-label">Channel Insight</div>
-        <p>Deals was the weakest channel at 2.3 avg purchases, underperforming Store by over 60%, signalling a need to review deals strategy.</p>
-      </div>
-      <div class="insight-card">
-        <div class="insight-label">Customer Profile</div>
-        <p>The average customer is 55+, earns ~$52K, spends ~$606, and is most likely to have no kids. Useful for targeting and segmentation strategy.</p>
-      </div>
-      <div class="insight-card">
-        <div class="insight-label">Tools Used</div>
-        <p>Power BI — Data Cleaning, DAX, KPI Cards, Scatter Plot, Treemap, Donut Chart, Bar Charts, Slicers</p>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-header reveal">
-    <span class="section-num">03</span>
-    <h2 class="section-title">Backgroud &amp; Expertise</h2>
-  </div>
-
-  <div class="xp-grid reveal">
-    <div class="xp-cell">
-      <div class="xp-meta">Audience &amp; Content Analytics</div>
-      <h4>Consumer Insights</h4>
-      <p>Deep understanding of how audiences behave across platforms, developed through years of managing content strategy and social media performance. I know what the metrics mean before I even pull the data.</p>
-    </div>
-    <div class="xp-cell">
-      <div class="xp-meta">Campaign Performance Analysis</div>
-      <h4>Marketing Analytics</h4>
-      <p>Experienced in evaluating what works across channels, from engagement and reach to conversion and ROI. I bridge the gap between creative execution and measurable outcomes.</p>
-    </div>
-    <div class="xp-cell">
-      <div class="xp-meta">Brand &amp; Positioning Strategy</div>
-      <h4>Strategy</h4>
-      <p>Building brand identities and messaging frameworks, giving me a strong sense of context when analysing market data, customer segments, or product performance.</p>
-    </div>
-    <div class="xp-cell">
-      <div class="xp-meta">UX Thinking &amp; Product Insight</div>
-      <h4>Product &amp; UX</h4>
-      <p>Exposure to product marketing and UX writing has sharpened how I think about user journeys, useful when designing dashboards, structuring reports, or presenting findings to non-technical stakeholders.</p>
+      <div class="tools-used"><strong>Tools:</strong> Power BI — Data Cleaning, DAX, KPI Cards, Scatter Plot, Treemap, Donut Chart, Bar Charts, Slicers</div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<section id="expertise">
+  <div class="wrap">
+    <div class="section-label">Background</div>
+    <h2 class="section-title">What 5 years in marketing brings to a dataset.</h2>
+    <div class="expertise-grid">
+      <div class="expertise-card">
+        <div class="kicker">Consumer Insights</div>
+        <h4>Audience & Content Analytics</h4>
+        <p>Years of managing content strategy and social performance taught me what the metrics mean before I even pull the data.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="kicker">Marketing Analytics</div>
+        <h4>Campaign Performance Analysis</h4>
+        <p>Experienced in evaluating what works across channels — engagement, reach, conversion, ROI — and connecting creative execution to measurable outcomes.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="kicker">Strategy</div>
+        <h4>Brand & Positioning</h4>
+        <p>Building brand identities and messaging frameworks gives me context when reading market data, customer segments, or product performance.</p>
+      </div>
+      <div class="expertise-card">
+        <div class="kicker">Product & UX</div>
+        <h4>UX Thinking & Product Insight</h4>
+        <p>Product marketing and UX writing sharpened how I think about user journeys — useful when designing dashboards or presenting findings to non-technical stakeholders.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
-  <div class="contact-inner">
-    <div class="reveal">
-      <h2 class="contact-title">Let's build something<br><em>data-driven</em> together.</h2>
-      <p style="color: var(--muted); margin-top: 1rem; font-size: 0.95rem; max-width: 380px;">Open to marketing analyst, business analyst, and data analyst roles. Available for freelance and full-time opportunities.</p>
-    </div>
-    <div class="contact-links reveal">
-      <a href="mailto:adefolalufadekemi@gmail.com" class="contact-link">✉ adefolalufadekemi@gmail.com</a>
-      <a href="https://linkedin.com/in/fadekemi-adefolalu" class="contact-link" target="_blank">in LinkedIn</a>
-      <a href="https://github.com/Ademi18" class="contact-link" target="_blank">⌥ GitHub</a>
-      <a href="https://x.com/fadeadefolalu" class="contact-link" target="_blank">X fadeadefolalu</a>
+  <div class="wrap">
+    <h2>Let's build something data-driven together.</h2>
+    <p>Open to junior/entry-level data analyst, marketing analyst, and business analyst roles. Available for freelance and full-time opportunities.</p>
+    <div class="contact-links">
+      <a href="mailto:adefolalufadekemi@gmail.com">✉ Email</a>
+      <a href="https://linkedin.com/in/REPLACE-WITH-NEW-LINKEDIN-URL">in LinkedIn</a>
+      <a href="https://github.com/Ademi18">⌥ GitHub</a>
+      <a href="https://x.com/fadeadefolalu">X — fadeadefolalu</a>
     </div>
   </div>
 </section>
 
-<footer>
-  <span>© 2025 Fadekemi Adefolalu</span>
-  <span>Data Analyst · Marketing Strategist · Lagos, Nigeria</span>
-</footer>
+<footer>© 2026 Fadekemi Adefolalu — Marketing Strategist · Aspiring Data Analyst · Lagos, Nigeria</footer>
 
-<script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>
